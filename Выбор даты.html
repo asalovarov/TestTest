@@ -1,0 +1,288 @@
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Выбор расчетного периода</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap');
+    button{
+      font-family: 'Inter', sans-serif;
+      font-weight: 400;
+      font-size: 16px;
+    }
+    body{
+      font-family: "Inter", sans-serif;
+        background-color: #F6F6F6;
+        margin: 30px 0;
+        color: #313131;
+    }
+    html {
+      box-sizing: border-box;
+    }
+    .head-day, .head-monthe{
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+    }
+
+    .button-calendar{
+      width: 16px;
+      height: 17px;
+      border: none;
+      background: none;
+      background-image: url(data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTYiIGhlaWdodD0iMTciIHZpZXdCb3g9IjAgMCAxNiAxNyIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPHBhdGggZD0iTTQuNDI4NTUgMTIuODUwMVYxMi43ODU3TTguMjg1NjggMTIuODUwMVYxMi43ODU3TTguMjg1NjggOS4zNTcxNFY5LjI5MjY5TTExLjcxNDIgOS4zNTcxNFY5LjI5MjY5TTEuODU3MTQgNS45Mjg1NUgxMy44NTcxTTMuNDA4MTUgMVYyLjI4NTg2TTEyLjE0MjggMVYyLjI4NTcxTTEyLjE0MjggMi4yODU3MUgzLjU3MTQyQzIuMTUxMjYgMi4yODU3MSAxIDMuNDM2OTcgMSA0Ljg1NzEyVjEzLjQyODZDMSAxNC44NDg3IDIuMTUxMjYgMTYgMy41NzE0MiAxNkgxMi4xNDI4QzEzLjU2MyAxNiAxNC43MTQyIDE0Ljg0ODcgMTQuNzE0MiAxMy40Mjg2TDE0LjcxNDIgNC44NTcxMkMxNC43MTQyIDMuNDM2OTcgMTMuNTYzIDIuMjg1NzEgMTIuMTQyOCAyLjI4NTcxWiIgc3Ryb2tlPSIjMDA4NkQ0IiBzdHJva2Utd2lkdGg9IjEuNSIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIiBzdHJva2UtbGluZWpvaW49InJvdW5kIi8+Cjwvc3ZnPgo=);
+      background-repeat:no-repeat; 
+      background-position: center;
+    }
+
+
+    .month-slider{
+      text-align: center;
+      font-size: 16px;
+    }
+    .day-slider{
+      text-align: center;
+      font-size: 16px;
+    }
+
+    .slider-left{
+      width: 50px;
+      height: 50px;
+      background: #0086D4;
+      border-radius: 10px;
+      border: none;    
+      background-image: url(data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTciIGhlaWdodD0iMTciIHZpZXdCb3g9IjAgMCAxNyAxNyIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPHBhdGggZD0iTTcuODI2ODkgMTZMMSA4LjVNMSA4LjVMNy44MjY4OSAxTTEgOC41SDE2IiBzdHJva2U9IndoaXRlIiBzdHJva2Utd2lkdGg9IjEuNSIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIiBzdHJva2UtbGluZWpvaW49InJvdW5kIi8+Cjwvc3ZnPgo=);
+      background-repeat:no-repeat; 
+      background-position: center;   
+    }
+
+    
+    .slider-left-data{
+      width: 50px;
+      height: 50px;
+      background: #0086D4;
+      border-radius: 10px;
+      border: none;    
+      background-image: url(data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTciIGhlaWdodD0iMTciIHZpZXdCb3g9IjAgMCAxNyAxNyIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPHBhdGggZD0iTTcuODI2ODkgMTZMMSA4LjVNMSA4LjVMNy44MjY4OSAxTTEgOC41SDE2IiBzdHJva2U9IndoaXRlIiBzdHJva2Utd2lkdGg9IjEuNSIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIiBzdHJva2UtbGluZWpvaW49InJvdW5kIi8+Cjwvc3ZnPgo=);
+      background-repeat:no-repeat; 
+      background-position: center;   
+    }
+
+    .slider-right-data{
+      width: 50px;
+      height: 50px;
+      background: #0086D4;
+      border-radius: 10px;
+      border: none;
+      background-image: url(data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTgiIGhlaWdodD0iMTciIHZpZXdCb3g9IjAgMCAxOCAxNyIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPHBhdGggZD0iTTkuNzUgMUwxNy4wNTg3IDguNU0xNy4wNTg3IDguNUw5Ljc0OTk5IDE2TTE3LjA1ODcgOC41SDEiIHN0cm9rZT0id2hpdGUiIHN0cm9rZS13aWR0aD0iMS41IiBzdHJva2UtbGluZWNhcD0icm91bmQiIHN0cm9rZS1saW5lam9pbj0icm91bmQiLz4KPC9zdmc+Cg==);
+      background-repeat:no-repeat; 
+      background-position: center;
+    }
+    
+    .slider-right{
+      width: 50px;
+      height: 50px;
+      background: #0086D4;
+      border-radius: 10px;
+      border: none;
+      background-image: url(data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTgiIGhlaWdodD0iMTciIHZpZXdCb3g9IjAgMCAxOCAxNyIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPHBhdGggZD0iTTkuNzUgMUwxNy4wNTg3IDguNU0xNy4wNTg3IDguNUw5Ljc0OTk5IDE2TTE3LjA1ODcgOC41SDEiIHN0cm9rZT0id2hpdGUiIHN0cm9rZS13aWR0aD0iMS41IiBzdHJva2UtbGluZWNhcD0icm91bmQiIHN0cm9rZS1saW5lam9pbj0icm91bmQiLz4KPC9zdmc+Cg==);
+      background-repeat:no-repeat; 
+      background-position: center;  
+
+    }
+
+    .month-slider__item{
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .icon-slider-left{
+      height: max-content;
+    }
+
+    .icon-error-day{
+      background-image: url(data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTciIGhlaWdodD0iMTciIHZpZXdCb3g9IjAgMCAxNyAxNyIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPHBhdGggZD0iTTguNDk5MTkgMTIuMjVWMTIuMjgzTTYuNjI1IDYuMTkxNjZDNi42MjUgNS4xMzY1NyA3LjQ2NDQ3IDQuMjgxMjUgOC41IDQuMjgxMjVDOS41MzU1MyA0LjI4MTI1IDEwLjM3NSA1LjEzNjU3IDEwLjM3NSA2LjE5MTY2QzEwLjM3NSA3LjI0Njc1IDkuNTM1NTMgOC4xMDIwNyA4LjUgOC4xMDIwN0M4LjUgOC4xMDIwNyA4LjQ5OTE5IDguNjcyMjkgOC40OTkxOSA5LjM3NTY4TTE2IDguNUMxNiAxMi42NDIxIDEyLjY0MjEgMTYgOC41IDE2QzQuMzU3ODYgMTYgMSAxMi42NDIxIDEgOC41QzEgNC4zNTc4NiA0LjM1Nzg2IDEgOC41IDFDMTIuNjQyMSAxIDE2IDQuMzU3ODYgMTYgOC41WiIgc3Ryb2tlPSIjRjA0ODEyIiBzdHJva2Utd2lkdGg9IjEuNSIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIiBzdHJva2UtbGluZWpvaW49InJvdW5kIi8+Cjwvc3ZnPgo=);
+      padding-bottom: 1px;
+      background-repeat:no-repeat; 
+      margin-right: 10%;
+      margin-bottom: 10px;
+    }
+
+    .error-day{
+      line-height: 1.3em;
+      font-size: 13px;
+      display: flex;
+      margin-left: 25px;
+      text-align: left;
+    }
+    
+    .day-slider__item{
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    h3{
+      font-size: 18px;
+      font-weight: 500;
+      margin-top: 0;
+      margin-bottom: 0;
+    }
+
+    .period-month{
+      display: block;
+      text-align: left;
+      background-color: white;
+      border: none;  
+      padding: 20px 20px;
+      margin: 10px 10px;
+      border-radius: 10px;
+    }
+
+    .period-day{
+      align-items:center;
+      text-align: left;
+      background-color: white;
+      padding: 20px 20px;
+      margin: 10px 10px;
+      border-radius: 10px;
+    }
+    .button-resume{
+      margin: 10px 10px;
+    }
+    .resume{
+      position: relative;
+      color: white;
+      width: 100%;
+      align-items: center;
+      margin: 0;
+      padding: 18px 32px 18px 32px;
+      background:#0086D4;
+      border-radius: 10px;
+      border: none;
+    }
+    .slider-monthe{
+      width: max-content;
+      display: flex;
+      align-items: center;
+      padding: 0px 18px;
+      height: 40px;
+      font-size: 16px;
+      background: none;
+      border: 1.5px solid white;
+      margin: 0 auto;
+      border-radius: 10px;
+    }
+
+    .slider-data, .davaToday{
+      font-family: 'Inter', sans-serif;
+      width: max-content;
+      display: flex;
+      align-items: center;
+      padding: 18px 18px 18px 18px;
+      height: 40px;
+      font-size: 16px;
+      color: #0086D4;
+      background: none;
+      border: 1.5px solid white;
+      border-radius: 10px;
+    }
+    .slider-data:not(:first-child):not(:last-child){
+      margin: 0 auto;
+    }
+
+    .d-m-y{
+      color: gainsboro;
+      margin: 5px 0;
+    }
+    .d-m-y___ieam:not(:first-child):not(:last-child){
+      margin: 0 10px;
+    }
+    .error-day:not(:first-child){
+        color: #F04812;
+        font-weight: 500;
+    }
+  </style>
+</head>
+<body>
+  <div class="period-month">
+    <div class="head-monthe">
+      <h3 class="head-monthe-title">Рабочий месяц</h3>
+    </div>
+    <div class="month-slider">
+      <div class="icon-error-day">
+        <p class="error-day">Выберите рабочий месяц за который планируете вносить данные.</p>
+        
+      </div>
+      <div class="month-slider__item">
+        <a href=""><button onclick="nextForm('leftMonth')" id="button1" class="slider-left-data"></button></a> 
+        <p class="slider-monthe" id="slider-monthe-id"></p>
+        <a href=""><button onclick="nextForm('rightMonth')" id="button1" class="slider-right-data"></button></a> 
+      </div>
+    </div>
+  </div>
+    <div class="period-day">
+      <div class="head-day">
+        <h3 class="head-day-title">Дата работ</h3>
+        <button onclick="nextForm('editDate')" class="button-calendar"></button>
+      </div>
+      <div class="icon-error-day">
+        <p class="error-day">Выберите дату, которая должна совпадать с выбранным рабочим месяцем.</p>
+        <p class="error-day">Исключение: 2 дня до и после указанного вами рабочего месяца</p>
+      </div>
+      <div class="day-slider">
+        <div class="day-slider__item">
+          <button onclick="nextForm('leftDay')" class="slider-left"></button>
+            <div class="slider-span-data">  
+              <button  class="slider-data" id="slider-data-id">дд.мм.гггг</button>
+            </div>     
+          <button onclick="nextForm('rightDay')" class="slider-right"></button>
+        </div>
+        
+      </div>
+  </div>
+  <div class="button-resume" >
+    <a href=""><button onclick="nextForm('nForm')" id="button1" class="resume">Период выбран!</button></a> 
+  </div>
+  <input 
+  type="date" 
+  class="slider-data" 
+  id="start" 
+  name="trip-start"
+  value="2018-07-22">
+
+</body>
+<script>  
+        var actionDate = "null";
+        var paramsDate = "";
+        var externalForm = null;
+        var choosed = 'day';
+        hello = document.getElementById("hello");
+        //document.getElementById('slider-data-id').valueAsDate = new Date();
+        //Переход на следующую форму
+        function nextForm(act){
+          actionDate = act;
+        }
+        //Показать панель комментария
+        function sliderMonth(qwe){
+            document.getElementById("slider-monthe-id").textContent = qwe; 
+        }
+       //Показать панель комментария
+        //function sliderDay(day, month, year){
+        //  var dateNew = new Date(year, month, day);
+        //  document.getElementById("slider-data-id").innerText = dateNew;
+        //}
+       //Показать панель комментария
+      function sliderDay(day){
+          document.getElementById("slider-data-id").textContent = day;
+      }
+
+      function editDate(){
+      //document.getElementById("start").valueAsDate = new Date();
+      }
+      
+
+</script>
+</html>
+
